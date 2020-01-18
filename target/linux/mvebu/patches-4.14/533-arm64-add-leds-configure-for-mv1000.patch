@@ -1,20 +1,3 @@
---- a/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c	2019-06-05 20:11:44.098047406 -0700
-+++ b/drivers/pinctrl/mvebu/pinctrl-armada-37xx.c	2019-06-05 20:14:39.122050335 -0700
-@@ -170,10 +170,10 @@
- 	PIN_GRP_EXTRA("uart2", 9, 2, BIT(1) | BIT(13) | BIT(14) | BIT(19),
- 		      BIT(1) | BIT(13) | BIT(14), BIT(1) | BIT(19),
- 		      18, 2, "gpio", "uart"),
--	PIN_GRP_GPIO("led0_od", 11, 1, BIT(20), "led"),
--	PIN_GRP_GPIO("led1_od", 12, 1, BIT(21), "led"),
--	PIN_GRP_GPIO("led2_od", 13, 1, BIT(22), "led"),
--	PIN_GRP_GPIO("led3_od", 14, 1, BIT(23), "led"),
-+	//PIN_GRP_GPIO("led0_od", 11, 1, BIT(20), "led"),
-+	//PIN_GRP_GPIO("led1_od", 12, 1, BIT(21), "led"),
-+	//PIN_GRP_GPIO("led2_od", 13, 1, BIT(22), "led"),
-+	//PIN_GRP_GPIO("led3_od", 14, 1, BIT(23), "led"),
- 
- };
- 
 --- a/drivers/leds/leds-glmv1000.c	1969-12-31 16:00:00.000000000 -0800
 +++ b/drivers/leds/leds-glmv1000.c	2019-06-05 20:27:57.958063703 -0700
 @@ -0,0 +1,82 @@
