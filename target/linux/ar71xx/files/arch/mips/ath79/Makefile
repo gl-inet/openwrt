@@ -134,6 +134,7 @@ obj-$(CONFIG_ATH79_MACH_FRITZ450E)		+= mach-fritz450e.o
 obj-$(CONFIG_ATH79_MACH_GL_AR150)		+= mach-gl-ar150.o
 obj-$(CONFIG_ATH79_MACH_GL_AR300)		+= mach-gl-ar300.o
 obj-$(CONFIG_ATH79_MACH_GL_AR300M)		+= mach-gl-ar300m.o
+obj-$(CONFIG_ATH79_MACH_GL_X300B)		+= mach-gl-x300b.o
 obj-$(CONFIG_ATH79_MACH_GL_AR750)		+= mach-gl-ar750.o
 obj-$(CONFIG_ATH79_MACH_GL_AR750S)		+= mach-gl-ar750s.o
 obj-$(CONFIG_ATH79_MACH_GL_DOMINO)		+= mach-gl-domino.o

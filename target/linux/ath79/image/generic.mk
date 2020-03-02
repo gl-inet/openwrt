@@ -407,6 +407,15 @@ define Device/glinet_gl-ar750s
 endef
 #TARGET_DEVICES += glinet_gl-ar750s
 
+define Device/glinet_gl-x300b
+  ATH_SOC := qca9531
+  DEVICE_TITLE := GL.iNet GL-X300B
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 
+  IMAGE_SIZE := 16000k
+endef
+TARGET_DEVICES += glinet_gl-x300b
+
+
 define Device/glinet_gl-x750
   ATH_SOC := qca9531
   DEVICE_TITLE := GL.iNet GL-X750

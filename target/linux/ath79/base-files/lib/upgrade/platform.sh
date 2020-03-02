@@ -40,6 +40,9 @@ platform_do_upgrade() {
 	local board=$(board_name)
 
 	case "$board" in
+        glinet,gl-x300b)
+                nand_do_upgrade "$1"
+                ;;
 	jjplus,ja76pf2)
 		redboot_fis_do_upgrade "$1" linux
 		;;

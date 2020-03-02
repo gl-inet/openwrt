@@ -135,3 +135,9 @@ define LegacyDevice/NBG6716
   DEVICE_PACKAGES := kmod-rtc-pcf8563 kmod-ath10k-ct ath10k-firmware-qca988x-ct
 endef
 LEGACY_DEVICES += NBG6716
+
+define LegacyDevice/GL-X300B
+	DEVICE_TITLE := GL-X300B with nand flash
+	DEVICE_PACKAGES :=  kmod-usb-core  kmod-usb2 kmod-usb-storage
+endef
+LEGACY_DEVICES += GL-X300B
