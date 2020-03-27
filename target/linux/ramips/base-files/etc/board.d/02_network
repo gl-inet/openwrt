@@ -93,6 +93,7 @@ ramips_setup_interfaces()
 	dlink,dwr-922-e2|\
 	ew1200|\
 	firewrt|\
+	gl-mt1300|\
 	hc5661a|\
 	hc5962|\
 	hlk-rm04|\
