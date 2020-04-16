@@ -405,7 +405,7 @@ define Device/glinet_gl-ar750s
   IMAGE_SIZE := 16000k
   SUPPORTED_DEVICES += gl-ar750s
 endef
-#TARGET_DEVICES += glinet_gl-ar750s
+TARGET_DEVICES += glinet_gl-ar750s
 
 define Device/glinet_gl-x300b
   ATH_SOC := qca9531

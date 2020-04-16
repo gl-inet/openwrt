@@ -26,3 +26,17 @@ define Device/glinet_gl-x300b
 endef
 TARGET_DEVICES += glinet_gl-x300b
 
+define Device/glinet_gl-ar750s-nor-nand
+   ATH_SOC := qca9563
+   DEVICE_TITLE := GL-AR750S (NOR/NAND)
+   DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9887-ct kmod-usb-core \
+	kmod-usb2 kmod-usb-storage
+   KERNEL_SIZE := 2048k
+   BLOCKSIZE := 128k
+   PAGESIZE := 2048
+   VID_HDR_OFFSET := 2048
+   IMAGES += factory.ubi
+   IMAGE/sysupgrade.bin := sysupgrade-tar
+   IMAGE/factory.ubi := append-kernel | pad-to $$$$(KERNEL_SIZE) | append-ubi
+endef
+TARGET_DEVICES += glinet_gl-ar750s-nor-nand
