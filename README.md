@@ -49,8 +49,9 @@ $ rm ./tmp -rf
 ```
 
 
-Compile firmware for NOR flash (Suitable for all products)
+Compile firmware for NOR flash
 =======
+Suitable for all products
 
 Select target
 -------------
@@ -101,10 +102,11 @@ so this file is the firmware we need, please update firmware again.
 Please refer to other instructions for further operations. Such as flash the firmware, etc.
 
 
-Compile firmware for NAND flash (Applicable to GL-AR300M GL-AR750S GL-E750 GL-X1200 GL-X750)
+Compile firmware for NAND flash
 =====
+Applicable to GL-AR300M GL-AR750S GL-E750 GL-X1200 GL-X750
 
-Select target (For example AR300M)
+Select target
 -------------
 Issueing **make menuconfig** to select a GL.iNet device, for example AR300M.
 
@@ -131,9 +133,6 @@ Then select common software package (as you need),such as USB driver as followin
        [ ] Support webcam
        [ ] Support rtc
 
-Simply running **make V=s -j5** will build your own firmware. It will download all sources, build the cross-compile toolchain, the kernel and all choosen applications which is spent on several hours.
-
-
 If the package you want to brush depends on the GL base package, please Select **Select basic packages** as well. Which packages the GL base package contains can be found in *config/config-glinet.in*
 
 Compile
@@ -146,7 +145,7 @@ $ make V=s -j5
 
 Notice **V=s**, this parameter is purpose to check info when compile.
 **-j5**, this parameter is for choosing the cpu core number, 5 means using 4 cores.
-If there’s error, please use **make V=s –j1 **to recompile, and check the error.
+If there’s error, please use **make V=s –j1** to recompile, and check the error.
 
 Target file location for NAND flash
 -----------------------------------
