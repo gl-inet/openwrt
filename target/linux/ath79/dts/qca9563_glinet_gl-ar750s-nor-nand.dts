@@ -34,8 +34,8 @@
 			gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
 		};
 
-		mode {
-			label = "mode";
+		right {
+			label = "right";
 			linux,code = <BTN_0>;
 			linux,input-type = <EV_SW>;
 			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
