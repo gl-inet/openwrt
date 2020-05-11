@@ -93,7 +93,7 @@ $ make V=s -j5
 
 Notice **V=s**, this parameter is purpose to check info when compile.
 **-j5**, this parameter is for choosing the cpu core number, 5 means using 4 cores.
-If there’s error, please use **make V=s –j1** to recompile, and check the error.
+If there’s error, please use **make V=s -j1** to recompile, and check the error.
 
 Target file location for NOR flash
 -----------------------------------
@@ -145,7 +145,7 @@ $ make V=s -j5
 
 Notice **V=s**, this parameter is purpose to check info when compile.
 **-j5**, this parameter is for choosing the cpu core number, 5 means using 4 cores.
-If there’s error, please use **make V=s –j1** to recompile, and check the error.
+If there’s error, please use **make V=s -j1** to recompile, and check the error.
 
 Target file location for NAND flash
 -----------------------------------
