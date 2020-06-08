@@ -145,4 +145,13 @@ menu "GL.iNet packages choice shortcut"
  	config GLINET_RTC
  		bool "Support rtc"
  		select RTC_SUPPORT
+
+	menu "Select MCU"
+		config GLINET_MCU
+			bool "Support GL_E750_MCU"
+			select GLINET_BASIC_PACKAGES
+			select PACKAGE_gl-e750-mcu
+			help
+			  Choose packages to support gl-e750 mcu control.
+	endmenu
 endmenu
