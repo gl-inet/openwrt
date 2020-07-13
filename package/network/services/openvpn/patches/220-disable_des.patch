@@ -1,18 +1,11 @@
 --- a/src/openvpn/syshead.h
 +++ b/src/openvpn/syshead.h
-@@ -597,11 +597,11 @@ socket_defined(const socket_descriptor_t
+//@@ -597,11 +597,11 @@ socket_defined(const socket_descriptor_t
  /*
   * Should we include NTLM proxy functionality
   */
--#if defined(ENABLE_CRYPTO)
 -#define NTLM 1
--#else
-+//#if defined(ENABLE_CRYPTO)
-+//#define NTLM 1
-+//#else
- #define NTLM 0
--#endif
-+//#endif
++#define NTLM 0
  
  /*
   * Should we include proxy digest auth functionality
@@ -66,7 +59,7 @@
  }
  
  /*
-@@ -710,10 +718,12 @@ cipher_des_encrypt_ecb(const unsigned ch
+@@ -705,10 +713,12 @@ cipher_des_encrypt_ecb(const unsigned ch
                         unsigned char *src,
                         unsigned char *dst)
  {
