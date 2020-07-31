@@ -10,9 +10,6 @@
 	model = "GL-MT1300";
 
 	aliases {
-		led-boot = &led_run;
-		led-failsafe = &led_run;
-		led-running = &led_run;
 		led-upgrade = &led_run;
 	};
 
@@ -51,21 +48,16 @@
 	leds {
 		compatible = "gpio-leds";
 
-		led_run: run {
-			label = "gl-mt1300:run";
-			gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
+		led_run: blue {
+			label = "gl-mt1300:blue";
+			gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
+			default-state = "on";
 		};
 		
-		wlan2g {
-			label = "gl-mt1300:wlan2g";
-			gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
+		white {
+			label = "gl-mt1300:white";
+			gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
 		};
-		
-		wlan5g {
-			label = "gl-mt1300:wlan5g";
-			gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-		};
-
 	};
 };
 
@@ -77,7 +69,7 @@
 	status = "okay";
 
 	m25p80@0 {
-		compatible = "jedec,spi-nor";
+		compatible = "mx25l25635f", "jedec,spi-nor";
 		reg = <0>;
 		spi-max-frequency = <10000000>;
 
@@ -101,6 +93,7 @@
 			factory: partition@40000 {
 				label = "factory";
 				reg = <0x40000 0x10000>;
+				read-only;
 			};
 
 			partition@50000 {
