@@ -42,7 +42,8 @@ menu "GL.iNet packages choice shortcut"
 		select PACKAGE_unzip
 		select PACKAGE_wpa-cli
 		select PACKAGE_bridge
-		select PACKAGE_wpad-openssl
+		select PACKAGE_wpad if TARGET_ramips
+		select PACKAGE_wpad-openssl if !TARGET_ramips
 		select PACKAGE_mwan3
 		select PACKAGE_relayd
 		select PACKAGE_stubby
