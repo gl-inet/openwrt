@@ -1,3 +1,4 @@
+src-git gli_pub https://github.com/gl-inet/gli-pub.git
 src-git packages https://git.openwrt.org/feed/packages.git^eae1bb397f064befe003b01a36ae318321e81d35
 src-git luci https://git.openwrt.org/project/luci.git^0d0ab01a64f25d15325d3c98a7df252085382f1d
 src-git routing https://git.openwrt.org/feed/routing.git^b77498bd56d5e45ab4577a1f4ad6ffc55b4a86b7
