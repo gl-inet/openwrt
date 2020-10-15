@@ -206,7 +206,7 @@ TARGET_DEVICES += gehua_ghl-r-001
 
 define Device/gl-mt1300
   DTS := GL-MT1300
-  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  IMAGE_SIZE := $(ralink_default_fw_size_32M)
   DEVICE_TITLE := GL-iNet GL-MT1300
   DEVICE_PACKAGES := \
 	kmod-ata-core kmod-ata-ahci kmod-mt76x2 kmod-mt7603 kmod-usb3 \

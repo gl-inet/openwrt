@@ -35,10 +35,6 @@ menu "GL.iNet packages choice shortcut"
 		select PACKAGE_lighttpd-mod-expire
 		select PACKAGE_lighttpd-mod-fastcgi
 		select PACKAGE_lighttpd-mod-proxy
-		select PACKAGE_luci
-		select PACKAGE_luci-mod-rpc
-		select LUCI_LANG_zh-cn
-		select LUCI_LANG_en
 		select PACKAGE_unzip
 		select PACKAGE_wpa-cli
 		select PACKAGE_bridge
