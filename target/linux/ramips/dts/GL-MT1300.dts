@@ -45,7 +45,6 @@
 		led_run: blue {
 			label = "gl-mt1300:blue";
 			gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
-			default-state = "on";
 		};
 		
 		white {
