@@ -550,7 +550,7 @@ TARGET_DEVICES += gl-ar750s
 define Device/gl-x1200
   DEVICE_TITLE := GL.iNet GL-X1200
   DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-storage \
-	  kmod-ath10k-ct ath10k-firmware-qca9888-ct 
+	  kmod-ath10k-ct ath10k-firmware-qca9888-ct-htt 
   BOARDNAME := GL-X1200
   SUPPORTED_DEVICES := gl-x1200
   IMAGE_SIZE := 16000k
