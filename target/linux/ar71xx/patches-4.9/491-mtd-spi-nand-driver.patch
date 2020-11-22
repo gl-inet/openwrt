@@ -25,8 +25,7 @@
 --- /dev/null
 +++ b/drivers/mtd/nand/spi_nand/Makefile
 @@ -0,0 +1 @@
-+obj-$(CONFIG_MTD_NAND_SPI_NAND) += generic-spinand-controller.o core.o bbt.o nand_core.o micron.o etron.o gigadevice.o paragon.o
-\ No newline at end of file
++obj-$(CONFIG_MTD_NAND_SPI_NAND) += generic-spinand-controller.o core.o bbt.o nand_core.o micron.o etron.o gigadevice.o paragon.o mxic.o
 --- /dev/null
 +++ b/drivers/mtd/nand/spi_nand/bbt.c
 @@ -0,0 +1,79 @@
