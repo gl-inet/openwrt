@@ -1,5 +1,14 @@
---- a/drivers/net/usb/ipheth.c	2018-08-16 00:13:02.000000000 +0800
-+++ b/drivers/net/usb/ipheth.c	2019-02-26 15:55:45.398659163 +0800
+--- a/drivers/net/usb/ipheth.c
++++ b/drivers/net/usb/ipheth.c
+@@ -70,7 +70,7 @@
+ #define IPHETH_USBINTF_SUBCLASS 253
+ #define IPHETH_USBINTF_PROTO    1
+ 
+-#define IPHETH_BUF_SIZE         1516
++#define IPHETH_BUF_SIZE         1514
+ #define IPHETH_IP_ALIGN		2	/* padding at front of URB */
+ #define IPHETH_TX_TIMEOUT       (5 * HZ)
+ 
 @@ -149,6 +149,7 @@ struct ipheth_device {
  	u8 bulk_in;
  	u8 bulk_out;
@@ -97,9 +106,3 @@
  	dev_info(&intf->dev, "Apple iPhone USB Ethernet device attached\n");
  	return 0;
  
-@@ -585,4 +600,4 @@ module_usb_driver(ipheth_driver);
- 
- MODULE_AUTHOR("Diego Giagio <diego@giagio.com>");
- MODULE_DESCRIPTION("Apple iPhone USB Ethernet driver");
--MODULE_LICENSE("Dual BSD/GPL");
-+MODULE_LICENSE("Dual BSD/GPL");
