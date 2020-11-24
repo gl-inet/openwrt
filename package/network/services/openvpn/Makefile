@@ -9,15 +9,15 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openvpn
 
-PKG_VERSION:=2.5_beta1
-PKG_RELEASE:=0
+PKG_VERSION:=2.5.0
+PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=\
-	https://build.openvpn.net/downloads/releases/
-PKG_SOURCE:=$(PKG_NAME)-2.5_beta1.tar.xz
-PKG_HASH:=0838362a42b227c6b85554e493c189258ba7d6eac31a2c2e71f4dcf07464a44b
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/OpenVPN/openvpn.git
+PKG_SOURCE_DATE:=2020-07-12
+PKG_SOURCE_VERSION:=6168f53d6b7274026d4f392a22e64524a9b264d6
+PKG_MIRROR_HASH:=ddca6ffd1508625d3ddf6dee0aca917b7d408d305cdc9f38a06392a863d51b81
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_MAINTAINER:=Felix Fietkau <nbd@nbd.name>
 
 PKG_INSTALL:=1
@@ -37,16 +37,11 @@ define Package/openvpn/Default
   MENU:=1
   DEPENDS:=+kmod-tun +OPENVPN_$(1)_ENABLE_LZO:liblzo +OPENVPN_$(1)_ENABLE_IPROUTE2:ip $(3)
   VARIANT:=$(1)
-ifeq ($(1),nossl)
-  PROVIDES:=openvpn
-else
   PROVIDES:=openvpn openvpn-crypto
-endif
 endef
 
 Package/openvpn-openssl=$(call Package/openvpn/Default,openssl,OpenSSL,+PACKAGE_openvpn-openssl:libopenssl)
 Package/openvpn-mbedtls=$(call Package/openvpn/Default,mbedtls,mbedTLS,+PACKAGE_openvpn-mbedtls:libmbedtls)
-Package/openvpn-nossl=$(call Package/openvpn/Default,nossl,plaintext (no SSL))
 
 define Package/openvpn/config/Default
 	source "$(SOURCE)/Config-$(1).in"
@@ -54,16 +49,12 @@ endef
 
 Package/openvpn-openssl/config=$(call Package/openvpn/config/Default,openssl)
 Package/openvpn-mbedtls/config=$(call Package/openvpn/config/Default,mbedtls)
-Package/openvpn-nossl/config=$(call Package/openvpn/config/Default,nossl)
 
 ifeq ($(BUILD_VARIANT),mbedtls)
 CONFIG_OPENVPN_MBEDTLS:=y
 endif
 ifeq ($(BUILD_VARIANT),openssl)
 CONFIG_OPENVPN_OPENSSL:=y
-endif
-ifeq ($(BUILD_VARIANT),nossl)
-CONFIG_OPENVPN_NOSSL:=y
 endif
 
 CONFIGURE_VARS += \
@@ -94,7 +85,6 @@ define Build/Configure
 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_DEF_AUTH),--enable,--disable)-def-auth \
 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_PF),--enable,--disable)-pf \
 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_PORT_SHARE),--enable,--disable)-port-share \
-		$(if $(CONFIG_OPENVPN_NOSSL),--disable-crypto,--enable-crypto) \
 		$(if $(CONFIG_OPENVPN_OPENSSL),--with-crypto-library=openssl) \
 		$(if $(CONFIG_OPENVPN_MBEDTLS),--with-crypto-library=mbedtls) \
 	)
@@ -150,4 +140,3 @@ endef
 
 $(eval $(call BuildPackage,openvpn-openssl))
 $(eval $(call BuildPackage,openvpn-mbedtls))
-$(eval $(call BuildPackage,openvpn-nossl))
