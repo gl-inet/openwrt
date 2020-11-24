@@ -113,6 +113,7 @@ CONFIGURE_ARGS += \
 	--disable-static \
 	--disable-swat \
 	--disable-shared-libs \
+	--disable-external-libtalloc \
 	--with-libiconv="$(ICONV_PREFIX)" \
 	--with-codepagedir=/etc/samba \
 	--with-configdir=/etc/samba \
