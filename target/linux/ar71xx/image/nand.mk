@@ -154,7 +154,7 @@ LEGACY_DEVICES += GL-E750
 
 define LegacyDevice/GL-X1200
 	DEVICE_TITLE := GL-X1200 with nand flash
-	DEVICE_PACKAGES :=  kmod-ath10k ath10k-firmware-qca9888 kmod-usb-core \
+	DEVICE_PACKAGES :=  kmod-ath10k-ct ath10k-firmware-qca9888-ct-htt kmod-usb-core \
 	      kmod-usb2 kmod-usb-storage
 endef
 LEGACY_DEVICES += GL-X1200
