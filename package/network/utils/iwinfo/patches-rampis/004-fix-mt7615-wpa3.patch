@@ -1,0 +1,35 @@
+--- a/iwinfo_cli.c
++++ b/iwinfo_cli.c
+@@ -233,6 +233,17 @@ static char * format_encryption(struct i
+ 		else if (c->wpa_version)
+ 		{
+ 			switch (c->wpa_version) {
++				case 6:
++					snprintf(buf, sizeof(buf), "mixed WPA2/WPA3 %s (%s)",
++						format_enc_suites(c->auth_suites),
++						format_enc_ciphers(c->pair_ciphers | c->group_ciphers));
++					break;
++
++				case 4:
++					snprintf(buf, sizeof(buf), "WPA3 %s (%s)",
++						format_enc_suites(c->auth_suites),
++						format_enc_ciphers(c->pair_ciphers | c->group_ciphers));
++					break;
+ 				case 3:
+ 					snprintf(buf, sizeof(buf), "mixed WPA/WPA2 %s (%s)",
+ 						format_enc_suites(c->auth_suites),
+--- a/iwinfo_rt_scan.c
++++ b/iwinfo_rt_scan.c
+@@ -164,7 +164,11 @@ int rt_get_scanlist(const char *ifname,
+ 			e[i].crypto.group_ciphers |= IWINFO_CIPHER_TKIP;
+ 		if (strstr(st[i].crypto, "AES"))
+ 			e[i].crypto.group_ciphers |= IWINFO_CIPHER_AESOCB;
+-		if (strstr(st[i].security, "WPA2"))
++		if (strstr(st[i].security, "WPA2PSKWPA3PSK"))
++			e[i].crypto.wpa_version = 6;
++		else if (strstr(st[i].security, "WPA3"))
++			e[i].crypto.wpa_version = 4;
++		else if (strstr(st[i].security, "WPA2"))
+ 			e[i].crypto.wpa_version = 2;
+ 		else if (strstr(st[i].security, "WPA"))
+ 			e[i].crypto.wpa_version = 1;

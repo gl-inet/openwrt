@@ -1,0 +1,69 @@
+--- a/Makefile
++++ b/Makefile
+@@ -16,6 +16,9 @@ IWINFO_CLI_OBJ     = iwinfo_cli.o
+ 
+ ifneq ($(filter rt,$(IWINFO_BACKENDS)),)
+ 	IWINFO_CFLAGS  += -DUSE_RTWIFI
++ifneq ($(filter mt7615,$(IWINFO_BACKENDS)),)
++	IWINFO_CFLAGS  += -DMT7615
++endif
+ 	IWINFO_LIB_OBJ += iwinfo_rt_scan.o
+ endif
+ 
+--- a/iwinfo_rt_scan.c
++++ b/iwinfo_rt_scan.c
+@@ -73,13 +73,26 @@ void wifi_site_survey(const char *ifname
+ 		start++;
+ 	line = strtok((char *)start, "\n");
+ 	line = strtok(NULL, "\n");
++#ifdef MT7615
++	line = strtok(NULL, "\n");
++#endif
+ 	survey_count = 0;
+ 	while(line && (survey_count < 64)) {
+ 		memset(&st[survey_count], 0, sizeof(st[survey_count]));
+ 
++#ifdef MT7615
++		char number[4] = {0};	
++		next_field(&line, number, 4);
++		if (!isdigit(number[0])) {
++			line = strtok(NULL, "\n");
++			continue;
++		}
++#endif
+ 		next_field(&line, st[survey_count].channel, sizeof(st->channel));
+ 		next_field(&line, st[survey_count].ssid, sizeof(st->ssid));
++#ifndef MT7615
+ 		next_field(&line, st[survey_count].len, sizeof(st->len));
++#endif
+ 		next_field(&line, st[survey_count].bssid, sizeof(st->bssid));
+ 		next_field(&line, st[survey_count].security, sizeof(st->security));
+ 		st[survey_count].crypto = strstr(st[survey_count].security, "/");
+@@ -93,9 +102,15 @@ void wifi_site_survey(const char *ifname
+ 		line = strtok(NULL, "\n");
+ 
+ 		/* skip hidden ssid */
++#ifdef MT7615
++		if (st[survey_count].ssid == NULL || strcmp(st[survey_count].ssid, " ") == 0) {
++			continue;
++		}
++#else		
+ 		if (!strcmp(st[survey_count].len, "0")) {
+ 			continue;
+ 		}
++#endif
+ 		survey_count++;
+ 	}
+ 	if (survey_count == 0 && !print)
+
+--- a/api/wext.h
++++ b/api/wext.h
+@@ -543,7 +543,7 @@
+ #define IW_SCAN_TYPE_ACTIVE 0
+ #define IW_SCAN_TYPE_PASSIVE 1
+ /* Maximum size of returned data */
+-#define IW_SCAN_MAX_DATA	4096	/* In bytes */
++#define IW_SCAN_MAX_DATA	20480	/* In bytes */
+ 
+ /* Max number of char in custom event - use multiple of them if needed */
+ #define IW_CUSTOM_MAX		256	/* In bytes */
