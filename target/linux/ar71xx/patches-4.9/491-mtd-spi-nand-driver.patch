@@ -2500,7 +2500,7 @@
 +MODULE_LICENSE("GPL v2");
 --- /dev/null
 +++ b/drivers/mtd/nand/spi_nand/gigadevice.c
-@@ -0,0 +1,151 @@
+@@ -0,0 +1,155 @@
 +/*
 + *
 + * Copyright (c) 2016-2017 Micron Technology, Inc.
@@ -2545,6 +2545,10 @@
 +			     NAND_ECCREQ(8, 512),
 +			     SPINAND_RW_COMMON),
 +	GIGA_SPI_NAND_INFO("GD5F1GQ4UE", 0xD1,
++                             NAND_MEMORG(1, 2048, 128, 64, 1024, 1, 1, 1),
++                             NAND_ECCREQ(8, 512),
++                             SPINAND_RW_COMMON),
++	GIGA_SPI_NAND_INFO("GD5F1GQ5UE", 0x51,
 +                             NAND_MEMORG(1, 2048, 128, 64, 1024, 1, 1, 1),
 +                             NAND_ECCREQ(8, 512),
 +                             SPINAND_RW_COMMON),
@@ -2633,7 +2637,7 @@
 +{
 +	struct nand_device *nand = spinand_to_nand(spinand);
 +	//for GD5F1GQ4XE,the dummy byte position at byte3 when read from cache
-+	if((spinand->id.data[1] == 0xd1) && (op->cmd == spinand->read_cache_op)){
++	if(((spinand->id.data[1] == 0xd1) || (spinand->id.data[1] == 0x51)) && (op->cmd == spinand->read_cache_op)){
 +		op->n_addr= 2;
 +        	op->addr[0] = op->addr[1];
 +        	op->addr[1] = op->addr[2];
