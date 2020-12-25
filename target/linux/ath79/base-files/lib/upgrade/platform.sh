@@ -40,6 +40,9 @@ platform_do_upgrade() {
 	local board=$(board_name)
 
 	case "$board" in
+	glinet,gl-ar750s-nor-nand|\
+	glinet,gl-ar750s|\
+	glinet,gl-x300b|\
 	glinet,gl-e750)
 		nand_do_upgrade "$1"
 		;;

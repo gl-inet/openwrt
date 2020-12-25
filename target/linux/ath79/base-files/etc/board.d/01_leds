@@ -87,6 +87,16 @@ glinet,gl-ar300m-lite)
 	;;
 glinet,gl-x750)
 	ucidef_set_led_netdev "wan" "WAN" "$boardname:green:wan" "eth1"
+	ucidef_set_led_wlan "wlan2g" "WLAN2G" "$board:white:wlan2g" "phy1tpt"
+	ucidef_set_led_wlan "wlan5g" "WLAN5G" "$board:white:wlan5g" "phy0tpt"
+	ucidef_set_led_netdev "wan" "WAN" "$board:white:wan" "eth0"
+	ucidef_set_led_netdev  "3gnet" "3GNET" "$board:white:4g" "3g-wan"
+	;;
+glinet,gl-ar750|\
+glinet,gl-ar750s-nor-nand|\
+glinet,gl-ar750s)
+	ucidef_set_led_wlan "wlan2g" "WLAN2G" "$board:white:wlan2g" "phy1tpt"
+	ucidef_set_led_wlan "wlan5g" "WLAN5G" "$board:white:wlan5g" "phy0tpt"
 	;;
 netgear,wnr612-v2|\
 on,n150r)

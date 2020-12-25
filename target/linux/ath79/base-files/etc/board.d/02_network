@@ -17,6 +17,7 @@ ath79_setup_interfaces()
 	devolo,dvl1750x|\
 	engenius,ecb1750|\
 	glinet,gl-ar300m-lite|\
+	gl-e750|\
 	glinet,gl-e750|\
 	netgear,ex6400|\
 	netgear,ex7300|\
@@ -91,6 +92,8 @@ ath79_setup_interfaces()
 	comfast,cf-e110n-v2|\
 	comfast,cf-e120a-v3|\
 	ubnt,nanostation-m|\
+	glinet,gl-x750|\
+	gl-x750|\
 	ubnt,routerstation)
 		ucidef_set_interfaces_lan_wan "eth1" "eth0"
 		;;
@@ -129,9 +132,16 @@ ath79_setup_interfaces()
 	etactica,eg200)
 		ucidef_set_interface_lan "eth0" "dhcp"
 		;;
+	glinet,gl-ar750s-nor-nand|\
 	glinet,gl-ar750s)
 		ucidef_add_switch "switch0" \
 			"0@eth0" "2:lan:2" "3:lan:1" "1:wan"
+		;;
+	gl-ar750|\
+	glinet,gl-ar750)
+		ucidef_set_interfaces_lan_wan "eth1.1" "eth0"
+		ucidef_add_switch "switch0" \
+		"0@eth1" "1:lan" "2:lan"
 		;;
 	iodata,etg3-r|\
 	iodata,wn-ac1167dgr|\
