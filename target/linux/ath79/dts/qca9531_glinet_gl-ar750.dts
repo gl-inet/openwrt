@@ -22,6 +22,13 @@
 			linux,code = <KEY_RESTART>;
 			gpios = <&gpio 3 GPIO_ACTIVE_LOW>;
 		};
+
+		mode {
+                        label = "sw1";
+                        linux,code = <BTN_0>;
+                        linux,input-type = <EV_SW>;
+                        gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
+                };
 	};
 
 	leds {
@@ -35,7 +42,7 @@
 
 		wlan2g {
 			label = "gl-ar750:green:wlan2g";
-			gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 14 GPIO_ACTIVE_LOW>;
 			linux,default-trigger = "phy1tpt";
 		};
 
@@ -45,15 +52,6 @@
 			linux,default-trigger = "phy0tpt";
 		};
 
-		wan {
-			label = "gl-ar750:green:wan";
-			gpios = <&gpio 14 GPIO_ACTIVE_LOW>;
-		};
-
-		4g {
-			label = "gl-ar750:green:4g";
-			gpios = <&gpio 15 GPIO_ACTIVE_LOW>;
-		};
 	};
 };
 

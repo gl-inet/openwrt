@@ -92,6 +92,7 @@ glinet,gl-x750)
 	ucidef_set_led_netdev "wan" "WAN" "$board:white:wan" "eth0"
 	ucidef_set_led_netdev  "3gnet" "3GNET" "$board:white:4g" "3g-wan"
 	;;
+	gl-ar750|\
 glinet,gl-ar750|\
 glinet,gl-ar750s-nor-nand|\
 glinet,gl-ar750s)
