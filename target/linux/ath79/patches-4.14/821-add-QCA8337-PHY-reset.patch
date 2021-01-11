@@ -1,0 +1,83 @@
+--- a/drivers/net/phy/ar8327.c
++++ b/drivers/net/phy/ar8327.c
+@@ -1403,6 +1403,12 @@ static const struct switch_attr ar8327_s
+ 		.get = ar8327_sw_get_igmp_v3,
+ 		.max = 1
+ 	},
++	{
++		.type = SWITCH_TYPE_NOVAL,
++		.name = "phy_reset",
++		.description = "phy hw reset",
++		.set = ar8xxx_hw_reset,
++	},
+ };
+ 
+ static const struct switch_attr ar8327_sw_attr_port[] = {
+--- a/drivers/net/phy/ar8216.c
++++ b/drivers/net/phy/ar8216.c
+@@ -889,9 +889,6 @@ ar8229_hw_init(struct ar8xxx_priv *priv)
+ {
+ 	int phy_if_mode;
+ 
+-	if (priv->initialized)
+-		return 0;
+-
+ 	ar8xxx_write(priv, AR8216_REG_CTRL, AR8216_CTRL_RESET);
+ 	ar8xxx_reg_wait(priv, AR8216_REG_CTRL, AR8216_CTRL_RESET, 0, 1000);
+ 
+@@ -917,7 +914,6 @@ ar8229_hw_init(struct ar8xxx_priv *priv)
+ 
+ 	ar8xxx_phy_init(priv);
+ 
+-	priv->initialized = true;
+ 	return 0;
+ }
+ 
+@@ -1854,6 +1850,21 @@ ar8xxx_sw_set_flush_arl_table(struct swi
+ }
+ 
+ int
++ar8xxx_hw_reset(struct switch_dev *dev,
++                             const struct switch_attr *attr,
++                             struct switch_val *val)
++{
++       struct ar8xxx_priv *priv = swdev_to_ar8xxx(dev);
++       int ret;
++
++       mutex_lock(&priv->reg_mutex);
++       ret = priv->chip->hw_init(priv);
++       mutex_unlock(&priv->reg_mutex);
++
++       return ret;
++}
++
++int
+ ar8xxx_sw_set_flush_port_arl_table(struct switch_dev *dev,
+ 				   const struct switch_attr *attr,
+ 				   struct switch_val *val)
+@@ -1988,6 +1999,12 @@ static const struct switch_attr ar8xxx_s
+ 		.description = "Flush ARL table",
+ 		.set = ar8xxx_sw_set_flush_arl_table,
+ 	},
++	{
++                .type = SWITCH_TYPE_NOVAL,
++                .name = "phy_reset",
++                .description = "phy hw reset",
++                .set = ar8xxx_hw_reset,
++        },
+ };
+ 
+ const struct switch_attr ar8xxx_sw_attr_port[] = {
+--- a/drivers/net/phy/ar8216.h
++++ b/drivers/net/phy/ar8216.h
+@@ -635,6 +635,10 @@ ar8xxx_sw_set_flush_arl_table(struct swi
+ 			      const struct switch_attr *attr,
+ 			      struct switch_val *val);
+ int
++ar8xxx_hw_reset(struct switch_dev *dev,
++                             const struct switch_attr *attr,
++                             struct switch_val *val);
++int
+ ar8xxx_sw_set_flush_port_arl_table(struct switch_dev *dev,
+ 				   const struct switch_attr *attr,
+ 				   struct switch_val *val);
