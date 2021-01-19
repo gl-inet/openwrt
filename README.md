@@ -10,6 +10,32 @@ Feature
 - Support kernel driver which isn't support by kernel-tree  
 - Keep updating with stock firmware  
 
+Branch Introduction
+=======
+- **develop** support model: AR150, MIFI, USB150, AR300M, AR750, AR750S, X750, E750, X1200, MT300N-V2, N300
+
+- **openwrt-18.06.5** support model: X300B
+
+- **openwrt-19.07** support model: MV1000
+
+- **openwrt-19.07.4** support model: MT1300
+
+- **openwrt-trunk** support model: XE300
+
+- **openwrt-18.06-s1300**
+
+    If you need to flash OpenWrt firmware on B1300/S1300, you need to modify the partition table using the intermediate firmware in this branch.
+
+- **openwrt-19.07.5**
+
+    This branch is under developing, all models (except IPQ series) will be transferred to this branch later. Version 3.201 is developed based on this branch.
+
+- **openwrt-19.07.2, openwrt-18.06, release**
+
+    No product currently uses those branch, those branch just used in transition, reserved source.
+
+**For example, if you want to compile the XE300 production target, you need to use *```git checkout openwrt-trunk```* command to switch openwrt-trunk branches.**
+
 Prerequisites  
 =============  
 
