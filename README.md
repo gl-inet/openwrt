@@ -12,7 +12,7 @@ Feature
 
 Branch Introduction
 =======
-- **develop** support model: AR150, MIFI, USB150, AR300M, AR750, AR750S, X750, E750, X1200, MT300N-V2, N300
+- **develop** support model: AR150, MIFI, USB150, AR300M, AR750, AR750S, X750, E750, X1200, MT300N-V2, N300, B1300
 
 - **openwrt-18.06.5** support model: X300B
 
@@ -24,7 +24,7 @@ Branch Introduction
 
 - **openwrt-18.06-s1300**
 
-    If you need to flash OpenWrt firmware on B1300/S1300, you need to modify the partition table using the intermediate firmware in this branch.
+    If you need to flash OpenWrt firmware on S1300, you need to modify the partition table using the intermediate firmware in this branch.
 
 - **openwrt-19.07.5**
 
